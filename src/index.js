@@ -17,8 +17,9 @@ export default {
 
     const response = await fetch(request)
     const contentType = response.headers.get('Content-Type') || ''
+    const url = new URL(request.url)
     
-    console.log('Pahtname: ', request.url)
+    console.log('Pahtname: ', url.pathname)
 
     if (contentType.includes('text/html')) {
       return rewriter.transform(response)
