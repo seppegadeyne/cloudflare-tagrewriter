@@ -20,6 +20,7 @@ export default {
     const url = new URL(request.url)
     
     console.log('Pahtname: ', url.pathname)
+    console.log('Test include: ', url.pathname.includes('/silent-disco-huren'))
 
     if (contentType.includes('text/html')) {
       return rewriter.transform(response)
