@@ -20,9 +20,9 @@ export default {
     const url = new URL(request.url)
     
     console.log('Pahtname: ', url.pathname)
-    console.log('Test include: ', url.pathname.includes('/silent-disco-huren'))
+    console.log('Test include: ', url.pathname.includes('/ShoppingCart'))
 
-    if (contentType.includes('text/html')) {
+    if (contentType.includes('text/html') && !url.pathname.includes('/ShoppingCart')) {
       return rewriter.transform(response)
     } else {
       return response
