@@ -10,7 +10,6 @@ export default {
 
         element.setAttribute('data-script', 'true')
         if (src) element.tagName = 'template' 
-        if (src) console.log('Script detected v2: ', src)
       }
     }
 
