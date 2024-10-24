@@ -1,5 +1,6 @@
 name = "scriptrewriter"
-type = "javascript"
+main = "src/index.js"
+compatibility_date = "2024-06-03"
 
 [observability]
 enabled = true
