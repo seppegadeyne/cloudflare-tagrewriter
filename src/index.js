@@ -4,7 +4,7 @@ export default {
       element(element) {
         element.setAttribute('data-modified', new Date())
         if (element.src) element.tagName = 'template' 
-        console.log(`Found script v3: ${element.tagName} / ${element.src}`)
+        console.log(`Found script v4: ${element.tagName} / ${element.src}`)
       }
     }
 
