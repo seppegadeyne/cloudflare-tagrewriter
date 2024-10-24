@@ -21,10 +21,10 @@ export default {
 		const contentType = response.headers.get('Content-Type') || ''
 
 		if (contentType.includes('text/html')) {
-			console.log('Rewriting HTML')
+			console.log('Rewriting HTML v1')
 			return rewriter.transform(response)
 		} else {
-			console.log('Skipping HTML rewrite')
+			console.log('Skipping HTML rewrite v1')
 			return response
 		}
 	}
