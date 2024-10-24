@@ -3,5 +3,5 @@ main = "src/index.js"
 compatibility_date = "2024-06-03"
 
 [observability]
-enabled = true
+enabled = false
 head_sampling_rate = 1

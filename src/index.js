@@ -10,7 +10,6 @@ export default {
 
         element.setAttribute('data-script', 'true')
         if (src) element.tagName = 'template' 
-        console.log(`Found script v5: ${element.tagName} / ${src}`)
       }
     }
 
