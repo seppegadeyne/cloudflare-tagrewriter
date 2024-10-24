@@ -20,7 +20,7 @@ export default {
     const url = new URL(request.url)
     
     console.log('Pahtname: ', url.pathname)
-    console.log('Test include: ', url.pathname.includes('/ShoppingCart'))
+    console.log('Test include ShoppingCart: ', url.pathname.includes('/ShoppingCart'))
 
     if (contentType.includes('text/html') && !url.pathname.includes('/ShoppingCart')) {
       return rewriter.transform(response)
