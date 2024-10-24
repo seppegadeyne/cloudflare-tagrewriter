@@ -10,8 +10,8 @@ export default {
 
         element.setAttribute('data-script', 'true')
         if (src) element.tagName = 'template' 
-        console.log('Script detected: ', src)
-      }
+          console.log('Script detected: ', src)
+        }
     }
 
     const rewriter = new HTMLRewriter().on('script', new TagRewriter('src'))
