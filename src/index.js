@@ -16,10 +16,9 @@ export default {
     const rewriter = new HTMLRewriter().on('script', new TagRewriter('src'))
 
     const response = await fetch(request),
-      contentType = response.headers.get('Content-Type') || '',
-      pathname = new Url(request.url).pathname
+      contentType = response.headers.get('Content-Type') || ''
     
-    console.log('Pahtname:', pathname)
+    console.log('Pahtname:', request.url)
 
     if (contentType.includes('text/html')) {
       return rewriter.transform(response)
