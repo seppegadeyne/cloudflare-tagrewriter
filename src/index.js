@@ -8,9 +8,9 @@ export default {
       element(element) {
         const src = element.getAttribute(this.src)
 
-        element.setAttribute('data-modified', new Date())
+        element.setAttribute('data-script', 'true')
         if (src) element.tagName = 'template' 
-        console.log(`Found script v4: ${element.tagName} / ${src}`)
+        console.log(`Found script v5: ${element.tagName} / ${src}`)
       }
     }
 
