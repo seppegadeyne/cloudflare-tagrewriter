@@ -1,31 +1,24 @@
 export default {
-	async fetch(request) {
-		class ScriptRewriter {
-			constructor(src) {
-				this.src = src
-			}
+  async fetch(request) {
+    class TagRewriter {
+      element(element) {
+        element.setAttribute('data-modified', new Date().toUTCString())
+        element.tagName = 'template' 
+        console.log(`Found script v2: ${element.tagName} / ${element.src}`)
+      }
+    }
 
-			element(element) {
-				const src = element.getAttribute(this.src)
+    const rewriter = new HTMLRewriter().on('script', new TagRewriter())
 
-				if (src) {
-					element.tagName = 'template'
-					console.log(`Found script: ${src}`)
-				}
-			}
-		}
+    const response = await fetch(request)
+    const contentType = response.headers.get('Content-Type') || ''
 
-		const rewriter = new HTMLRewriter().on('script', new ScriptRewriter('src'))
-
-		const response = await fetch(request)
-		const contentType = response.headers.get('Content-Type') || ''
-
-		if (contentType.includes('text/html')) {
-			console.log('Rewriting HTML v1')
-			return rewriter.transform(response)
-		} else {
-			console.log('Skipping HTML rewrite v1')
-			return response
-		}
-	}
+    if (contentType.includes('text/html')) {
+      console.log('Rewriting HTML v2')
+      return rewriter.transform(response)
+    } else {
+      console.log('Skipping HTML rewrite v2')
+      return response
+    }
+  },
 }
