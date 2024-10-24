@@ -1,4 +1,6 @@
-# wrangler.toml (wrangler v3.79.0^)
+name = "scriptrewriter"
+type = "javascript"
+
 [observability]
 enabled = true
 head_sampling_rate = 1
