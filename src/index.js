@@ -13,10 +13,6 @@ export default {
 					element.setAttribute('data-tag', 'script')
 					element.setAttribute('data-priority', this.priority)
 					element.tagName = 'template'
-				} else if (this.priority === 2) {
-					element.setAttribute('data-tag', 'script')
-					element.setAttribute('data-priority', this.priority)
-					element.tagName = 'template'
 				}
 			}
 		}
