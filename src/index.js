@@ -14,12 +14,6 @@ export default {
 					element.setAttribute('data-priority', this.priority)
 					element.tagName = 'template'
 				}
-
-				if (!src && this.priority === 2) {
-					element.setAttribute('data-tag', 'script')
-					element.setAttribute('data-priority', this.priority)
-					element.tagName = 'template'
-				}
 			}
 		}
 
