@@ -9,7 +9,7 @@ export default {
 			element(element) {
 				const src = element.getAttribute(this.src)
 
-				if (src) {
+				if (src && !src.startsWith('https://ajax.googleapis.com/ajax/libs/jquery/')) {
 					element.setAttribute('data-tag', 'script')
 					element.setAttribute('data-priority', this.priority)
 					element.tagName = 'template'
