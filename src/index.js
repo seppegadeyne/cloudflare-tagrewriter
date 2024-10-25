@@ -24,7 +24,8 @@ export default {
 		}
 
 		const rewriterOne = new HTMLRewriter()
-			.on('script', new TagRewriter('src', 1))
+			.on('head script', new TagRewriter('src', 1))
+			.on('body script', new TagRewriter('src', 2))
 			.on('a[href="https://www.rentpro.nl"]', new TagRemover())
 
 		const rewriterTwo = new HTMLRewriter().on('a[href="https://www.rentpro.nl"]', new TagRemover())
