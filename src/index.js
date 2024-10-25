@@ -33,10 +33,7 @@ export default {
 		const contentType = response.headers.get('Content-Type') || ''
 		const url = new URL(request.url)
 
-		// console.log('Pahtname: ', url.pathname)
-		// console.log('Test include ShoppingCart: ', url.pathname.includes('/shoppingcart'))
-
-		if (contentType.includes('text/html') && !url.pathname.includes('/shoppingcart')) {
+		if (contentType.includes('text/html') && !url.pathname.startsWith('/shoppingcart')) {
 			return rewriterOne.transform(response)
 		} else {
 			return rewriterTwo.transform(response)
