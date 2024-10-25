@@ -1,19 +1,24 @@
 export default {
   async fetch(request) {
     class TagRewriter {
-      constructor(src) {
+      constructor(src, priority) {
         this.src = src
+        this.priority = priority
       }
 
       element(element) {
         const src = element.getAttribute(this.src)
 
-        element.setAttribute('data-script', 'true')
-        if (src) element.tagName = 'template' 
+        
+        if (src) {
+          element.setAttribute('data-script', 'true')
+          element.setAttribute('data-priority', this.priority)
+          element.tagName = 'template' 
+        }
       }
     }
 
-    const rewriter = new HTMLRewriter().on('script', new TagRewriter('src'))
+    const rewriter = new HTMLRewriter().on('script', new TagRewriter('src', 1))
 
     const response = await fetch(request)
     const contentType = response.headers.get('Content-Type') || ''
