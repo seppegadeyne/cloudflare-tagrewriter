@@ -14,6 +14,10 @@ export default {
 					element.setAttribute('data-priority', this.priority)
 					element.tagName = 'template'
 				}
+
+				if (src.startsWith('https://ajax.googleapis.com/ajax/libs/jquery/')) {
+					element.setAttribute('async', '')
+				}
 			}
 		}
 
