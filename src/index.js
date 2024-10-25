@@ -9,7 +9,11 @@ export default {
 			element(element) {
 				const src = element.getAttribute(this.src)
 
-				if (src) {
+				if (src && this.priority === 1) {
+					element.setAttribute('data-tag', 'script')
+					element.setAttribute('data-priority', this.priority)
+					element.tagName = 'template'
+				} else {
 					element.setAttribute('data-tag', 'script')
 					element.setAttribute('data-priority', this.priority)
 					element.tagName = 'template'
