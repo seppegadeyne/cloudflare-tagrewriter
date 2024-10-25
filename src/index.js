@@ -23,9 +23,11 @@ export default {
 			}
 		}
 
-		const rewriter = new HTMLRewriter()
+		const rewriterOne = new HTMLRewriter()
 			.on('script', new TagRewriter('src', 1))
 			.on('a[href="https://www.rentpro.nl"]', new TagRemover())
+
+		const rewriterTwo = new HTMLRewriter().on('a[href="https://www.rentpro.nl"]', new TagRemover())
 
 		const response = await fetch(request)
 		const contentType = response.headers.get('Content-Type') || ''
@@ -35,9 +37,9 @@ export default {
 		// console.log('Test include ShoppingCart: ', url.pathname.includes('/shoppingcart'))
 
 		if (contentType.includes('text/html') && !url.pathname.includes('/shoppingcart')) {
-			return rewriter.transform(response)
+			return rewriterOne.transform(response)
 		} else {
-			return response
+			return rewriterTwo.transform(response)
 		}
 	}
 }
