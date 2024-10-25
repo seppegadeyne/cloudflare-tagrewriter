@@ -3,6 +3,5 @@
   "singleQuote": true,
   "trailingComma": "none",
   "semi": false,
-  "printWidth": 100,
-  "pluginSearchDirs": false
+  "printWidth": 100
 }
