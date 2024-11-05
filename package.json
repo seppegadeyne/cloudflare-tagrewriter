@@ -1,17 +1,18 @@
 {
-  "private": true,
-  "name": "cloudflare-tagrewriter",
-  "version": "1.0.0",
-  "description": "Rewrite certain HTML tags to <template> tags",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write '**/*.{js,css,json,md}'"
-  },
-  "author": "Seppe Gadeyne",
-  "license": "MIT",
-  "devDependencies": {
-    "prettier": "^1.18.2",
-    "wrangler": "^3.83.0"
-  }
+	"private": true,
+	"name": "cloudflare-tagrewriter",
+	"version": "1.0.0",
+	"description": "Rewrite certain HTML tags to <template> tags",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"format": "prettier --write '**/*.{js,css,json,md}'",
+		"dev": "wrangler dev "
+	},
+	"author": "Seppe Gadeyne",
+	"license": "MIT",
+	"devDependencies": {
+		"prettier": "^1.18.2",
+		"wrangler": "^3.83.0"
+	}
 }
