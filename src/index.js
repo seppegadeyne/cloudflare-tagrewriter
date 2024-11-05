@@ -28,7 +28,7 @@ export default {
 				element.prepend(
 					`<script>
 						document.addEventListener("DOMContentLoaded", function () {
-						    function loadJS(e, o) {
+						    function loadJavaScript(e, o) {
 								return new Promise(function(n) {
 									var r = document.createElement("script");
 									r.type = "text/javascript";
@@ -79,7 +79,7 @@ export default {
 									template.remove();
 								});
 
-								window.$zopim || loadJS("//v2.zopim.com/?3rxfUWDGLtWlU6QTLB2TP2vGrQSZ90Go", "zopim-chat");
+								window.$zopim || loadJavaScript("https://v2.zopim.com/?3rxfUWDGLtWlU6QTLB2TP2vGrQSZ90Go", "zopim-chat");
 							}
 
 							window.addEventListener('scroll', loadTemplateScripts, { once: true });
