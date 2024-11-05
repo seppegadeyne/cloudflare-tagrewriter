@@ -42,7 +42,7 @@ export default {
 
 							function loadTemplateScripts() {
 								observer.disconnect();
-								
+
 								const templates = Array.from(document.querySelectorAll('template[data-tag="script"]'))
 									.sort((a, b) => a.getAttribute('data-priority') - b.getAttribute('data-priority'));
 
@@ -92,17 +92,18 @@ export default {
 							for (const mutation of mutationsList) {
 								if (mutation.type === 'childList') {
 									mutation.addedNodes.forEach((node) => {
-										if (node.tagName === 'SCRIPT' && node.src.startsWith('https://consent.cookiebot.com')) {
+										if (node.tagName === 'SCRIPT' && node.src && node.src.startsWith('https://consent.cookiebot.com')) {
 											const template = document.createElement('template');
 											template.setAttribute('src', node.src);
 											template.setAttribute('data-tag', 'script');
 											template.setAttribute('data-priority', '1');
+
 											node.replaceWith(template);
 										}
-									})
+									});
 								}
 							}
-						})
+						});
 
 						observer.observe(document, { childList: true, subtree: true })
 					</script >`,
