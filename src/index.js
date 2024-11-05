@@ -91,7 +91,6 @@ export default {
 								if (mutation.type === 'childList') {
 									mutation.addedNodes.forEach((node) => {
 										if (node.tagName === 'SCRIPT' && node.src.startsWith('https://consent.cookiebot.com')) {
-											console.error('Cookiebot script blocked', node);
 											const template = document.createElement('template');
 											template.setAttribute('src', node.src);
 											template.setAttribute('data-tag', 'script');
