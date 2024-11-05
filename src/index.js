@@ -41,6 +41,8 @@ export default {
 							}
 
 							function loadTemplateScripts() {
+								observer.disconnect();
+								
 								const templates = Array.from(document.querySelectorAll('template[data-tag="script"]'))
 									.sort((a, b) => a.getAttribute('data-priority') - b.getAttribute('data-priority'));
 
@@ -96,7 +98,6 @@ export default {
 											template.setAttribute('data-tag', 'script');
 											template.setAttribute('data-priority', '1');
 											node.replaceWith(template);
-											observer.disconnect();
 										}
 									})
 								}
