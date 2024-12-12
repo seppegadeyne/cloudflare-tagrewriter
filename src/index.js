@@ -22,20 +22,6 @@ export default {
 									document.head.appendChild(r);
 								});
 							}
-							
-							/*
-							document.querySelector(".prdReviewShowAll")?.addEventListener("click", function () {
-								document.querySelectorAll(".prdReview").forEach(function (element) {
-									element.style.display = "block";
-								});
-								this.style.display = "none";
-							});
-
-							document.querySelector(".prdPlaceReview")?.addEventListener("click", function () {
-								document.querySelector("#prdPlaceReviewDiv").style.display = "block";
-								this.style.display = "none";
-							});
-							*/
 
 							document.querySelector("#ss-youtube")?.addEventListener("click", function () {
 								ssYouTube();
