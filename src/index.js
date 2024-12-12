@@ -1,22 +1,5 @@
 export default {
 	async fetch(request) {
-		class TagRewriter {
-			constructor(src, priority) {
-				this.src = src
-				this.priority = priority
-			}
-
-			element(element) {
-				const src = element.getAttribute(this.src)
-
-				if (src && !src.match(/https:\/\/.*jquery.*\.js/)) {
-					element.setAttribute('data-tag', 'script')
-					element.setAttribute('data-priority', this.priority)
-					element.tagName = 'template'
-				}
-			}
-		}
-
 		class TagRemover {
 			element(element) {
 				element.remove()
@@ -39,51 +22,33 @@ export default {
 									document.head.appendChild(r);
 								});
 							}
-
-							function loadTemplateScripts() {
-								const templates = Array.from(document.querySelectorAll('template[data-tag="script"]'))
-									.sort((a, b) => a.getAttribute('data-priority') - b.getAttribute('data-priority'));
-
-								let scriptsLoaded = 0;
-
-								templates.forEach((template, index) => {
-									const script = document.createElement('script');
-									const src = template.getAttribute('src');
-									if (src) {
-										script.src = src;
-										script.async = true;
-
-										script.onload = () => {
-											scriptsLoaded++;
-											if (scriptsLoaded === templates.length) {
-												document.querySelector(".prdReviewShowAll")?.addEventListener("click", function () {
-													document.querySelectorAll(".prdReview").forEach(function (element) {
-														element.style.display = "block";
-													});
-													this.style.display = "none";
-												});
-
-												document.querySelector(".prdPlaceReview")?.addEventListener("click", function () {
-													document.querySelector("#prdPlaceReviewDiv").style.display = "block";
-													this.style.display = "none";
-												});
-
-												document.querySelector("#ss-youtube")?.addEventListener("click", function () {
-													ssYouTube();
-												});
-											}
-										};
-									}
-
-									document.head.appendChild(script);
-									template.remove();
+							
+							/*
+							document.querySelector(".prdReviewShowAll")?.addEventListener("click", function () {
+								document.querySelectorAll(".prdReview").forEach(function (element) {
+									element.style.display = "block";
 								});
+								this.style.display = "none";
+							});
 
+							document.querySelector(".prdPlaceReview")?.addEventListener("click", function () {
+								document.querySelector("#prdPlaceReviewDiv").style.display = "block";
+								this.style.display = "none";
+							});
+							*/
+
+							document.querySelector("#ss-youtube")?.addEventListener("click", function () {
+								ssYouTube();
+							});
+
+							function loadScripts() {
 								window.$zopim || loadJavaScript("https://v2.zopim.com/?3rxfUWDGLtWlU6QTLB2TP2vGrQSZ90Go", "zopim-chat");
+								window.removeEventListener("scroll", loadScripts);
+								window.removeEventListener("mousemove", loadScripts);
 							}
 
-							window.addEventListener('scroll', loadTemplateScripts, { once: true });
-							window.addEventListener('mousemove', loadTemplateScripts, { once: true });
+							window.addEventListener('scroll', loadScripts, { once: true });
+							window.addEventListener('mousemove', loadScripts, { once: true });
 						});
 					</script >`,
 					{ html: true }
@@ -99,32 +64,15 @@ export default {
 			headers: request.headers
 		})
 		const response = await fetch(targetRequest)
-		const url = new URL(targetURL)
 		*/
 
 		// Production
 		const response = await fetch(request)
-		const url = new URL(request.url)
 
-		const contentType = response.headers.get('Content-Type') || ''
-
-		/*
-			.on('head script', new TagRewriter('src', 1))
-			.on('body script', new TagRewriter('src', 2))
-		*/
-
-		const rewriterOne = new HTMLRewriter()
+		const rewriter = new HTMLRewriter()
 			.on('head', new TagInserter())
 			.on('a[href="https://www.rentpro.nl"]', new TagRemover())
 
-		const rewriterTwo = new HTMLRewriter()
-			.on('a[href="https://www.rentpro.nl"]', new TagRemover())
-			.on('head', new TagInserter())
-
-		if (contentType.includes('text/html') && !url.pathname.startsWith('/shoppingcart')) {
-			return rewriterOne.transform(response)
-		} else {
-			return rewriterTwo.transform(response)
-		}
+		return rewriter.transform(response)
 	}
 }
