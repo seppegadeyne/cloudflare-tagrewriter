@@ -108,8 +108,12 @@ export default {
 
 		const contentType = response.headers.get('Content-Type') || ''
 
-		const rewriterOne = new HTMLRewriter()
+		/*
 			.on('head script', new TagRewriter('src', 1))
+			.on('body script', new TagRewriter('src', 2))
+		*/
+
+		const rewriterOne = new HTMLRewriter()
 			.on('head', new TagInserter())
 			.on('a[href="https://www.rentpro.nl"]', new TagRemover())
 
