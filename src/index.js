@@ -9,7 +9,7 @@ export default {
 			element(element) {
 				const src = element.getAttribute(this.src)
 
-				if (src && !src.startsWith('https://ajax.googleapis.com/ajax/libs/jquery/')) {
+				if (src && !src.match(/https:\/\/.*jquery.*\.js/)) {
 					element.setAttribute('data-tag', 'script')
 					element.setAttribute('data-priority', this.priority)
 					element.tagName = 'template'
@@ -111,7 +111,6 @@ export default {
 		const rewriterOne = new HTMLRewriter()
 			.on('head script', new TagRewriter('src', 1))
 			.on('head', new TagInserter())
-			.on('body script', new TagRewriter('src', 2))
 			.on('a[href="https://www.rentpro.nl"]', new TagRemover())
 
 		const rewriterTwo = new HTMLRewriter()
