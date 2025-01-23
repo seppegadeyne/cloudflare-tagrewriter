@@ -8,7 +8,7 @@ export default {
 
 		class TagInserter {
 			element(element) {
-				element.prepend(
+				element.append(
 					`<script>
 						document.addEventListener("DOMContentLoaded", function () {
 						    function loadJavaScript(e, o) {
@@ -56,7 +56,7 @@ export default {
 		const response = await fetch(request)
 
 		const rewriter = new HTMLRewriter()
-			.on('head', new TagInserter())
+			.on('body', new TagInserter())
 			.on('a[href="https://www.rentpro.nl"]', new TagRemover())
 
 		return rewriter.transform(response)
