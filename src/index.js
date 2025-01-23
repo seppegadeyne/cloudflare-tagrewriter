@@ -9,7 +9,7 @@ export default {
 		class TagInserter {
 			element(element) {
 				element.append(
-					`<script>
+					`<script type="text/javascript" id="ss-custom-js">
 						document.addEventListener("DOMContentLoaded", function () {
 						    function loadJavaScript(e, o) {
 								return new Promise(function(n) {
