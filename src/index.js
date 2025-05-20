@@ -29,10 +29,12 @@ export default {
 
 							function loadScripts() {
 								window.$zopim || loadJavaScript("https://v2.zopim.com/?3rxfUWDGLtWlU6QTLB2TP2vGrQSZ90Go", "zopim-chat");
+								loadJavaScript("https://app.masslytics.io/masslytics.js", "masslytics");
 								window.removeEventListener("scroll", loadScripts);
 								window.removeEventListener("mousemove", loadScripts);
 							}
 
+							window.masslyticsBrandId = "SW-026110";
 							window.addEventListener('scroll', loadScripts, { once: true });
 							window.addEventListener('mousemove', loadScripts, { once: true });
 						});
